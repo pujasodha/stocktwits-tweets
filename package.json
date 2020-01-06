@@ -3,12 +3,17 @@
     "version": "1.0.0",
     "scripts": {
         "client": "cd client && yarn start",
-        "server": "nodemon server.js",
-        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+        "server": "nodemon ./server/server.js",
+        "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "dependencies": {
+        "axios": "^0.19.0",
         "body-parser": "^1.18.3",
-        "express": "^4.16.4"
+        "experss": "^0.0.1-security",
+        "express": "^4.17.1",
+        "fetch": "^1.1.0",
+        "node-fetch": "^2.6.0",
+        "request": "^2.88.0"
     },
     "devDependencies": {
         "concurrently": "^4.0.1"
