@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { Fragment, Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+const axios = require('axios');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: [],
+            symbol: '',
+        };
+    }
+
+    componentDidMount = (symbol) => {
+        axios
+            .get(`/stocktwits/${symbol}`)
+            .then((response) => {
+                this.setState({ message: response.data });
+                console.log(this.state.message);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    render() {
+        return <ul>{this.state.message.map(({ body }) => body)}</ul>;
+    }
 }
-
-export default App;

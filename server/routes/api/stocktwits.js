@@ -1,24 +1,20 @@
-const request = require('request');
+const express = require('express');
+const router = express.Router();
 const axios = require('axios');
 
-module.exports = (app) => {
-    let symbol;
+/* GET users listing. */
+router.get('/:symbol', function(req, res, next) {
+    const symbol = req.params.symbol;
+    // console.log(symbol);
 
-    app.post('/search-symbol', (req, res) => {
-        symbol = req.body.symbol;
-        res.redirect('/symbol-tweets');
-    });
+    axios
+        .get(`https://api.stocktwits.com/api/2/streams/symbol/${symbol}.json`)
+        .then((response) => {
+            res.json(response.data.messages);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
 
-    app.get('/search/:symbol', async (req, res) => {
-        const symbol = req.params.symbol;
-        axios
-            .get(`https://api.stocktwits.com/api/2/streams/symbol/${symbol}.json`)
-            .then((response) => {
-                res.json(response.symbol);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        console.log(req.params.symbol);
-    });
-};
+module.exports = router;
