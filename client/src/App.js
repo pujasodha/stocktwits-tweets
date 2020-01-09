@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'react-bootstrap';
 const axios = require('axios');
 
 export default class App extends React.Component {
@@ -53,7 +54,9 @@ export default class App extends React.Component {
                         Symbol:
                         <input type="text" value={this.state.symbol} onChange={this.handleChange} />
                     </label>
-                    <input type="submit" value="Submit" onClick={this.handleClick} />
+                    <Button type="submit" value="Submit" onClick={this.handleClick}>
+                        Submit
+                    </Button>
                 </form>
                 <ul>
                     {this.state.message.map(({ body }) => (
