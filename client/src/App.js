@@ -12,6 +12,7 @@ export default class App extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.timer = this.timer.bind(this);
     }
 
     handleChange(event) {
@@ -21,6 +22,13 @@ export default class App extends React.Component {
     handleClick(event) {
         event.preventDefault();
         this.setState({ message: [] });
+        this.timer();
+        var intervalId = setInterval(() => {
+            this.timer();
+        }, 10000);
+    }
+
+    timer() {
         var arrMessageData = [];
         if (this.state.symbol) {
             const arrSymbol = this.state.symbol.split(',');
