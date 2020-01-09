@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Row, Form, Card, Button } from 'react-bootstrap';
 const axios = require('axios');
 
 export default class App extends React.Component {
@@ -38,6 +37,7 @@ export default class App extends React.Component {
                             }
                         }
                         this.setState({ message: arrMessageData });
+                        console.log(this.state.message);
                     })
                     .catch((err) => console.log(err));
             }
@@ -49,20 +49,73 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <form>
-                    <label>
-                        Symbol:
-                        <input type="text" value={this.state.symbol} onChange={this.handleChange} />
-                    </label>
-                    <Button type="submit" value="Submit" onClick={this.handleClick}>
-                        Submit
-                    </Button>
-                </form>
-                <ul>
-                    {this.state.message.map(({ body }) => (
-                        <li>{body}</li>
-                    ))}
-                </ul>
+                <Jumbotron fluid className="jumbo bg-dark">
+                    <Container className="header text-center">
+                        <h1>Stocktwits Board</h1> <br />
+                        <h4>Check out the latest tweets about any stock!</h4>
+                        <h4>Just enter in the symbol below, and we'll do the rest</h4>
+                    </Container>
+                </Jumbotron>
+
+                {/* Search */}
+                <Container>
+                    <Form className="form">
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8}>
+                                <Form.Label className="form-label">
+                                    <Form.Control
+                                        type="text"
+                                        value={this.state.symbol}
+                                        onChange={this.handleChange}
+                                        placeholder="Ex. AAPL"
+                                        className="search-box"
+                                    />
+                                </Form.Label>
+                            </Col>
+                        </Row>
+
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8}>
+                                <Button
+                                    type="submit"
+                                    value="Submit"
+                                    onClick={this.handleClick}
+                                    className="search-button"
+                                >
+                                    Submit
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
+                {/* Results */}
+
+                <Container>
+                    <Row>
+                        {this.state.message.map(({ user, created_at, body }) => (
+                            <Col xs={12} md={4}>
+                                <Card className="tweet-cards" bg="light">
+                                    <Card.Header className="card-user">
+                                        <img
+                                            src={user.avatar_url}
+                                            className="user-image"
+                                            alt="users-avatar"
+                                        ></img>
+                                        <p>{user.username}</p>
+                                        <hr />
+                                    </Card.Header>
+                                    <Card.Text className="card-body">
+                                        <p>{body}</p>
+                                    </Card.Text>
+                                    {/* <Card.Footer>
+                                        <p>{created_at}</p>
+                                    </Card.Footer> */}
+                                </Card>
+                                <br />
+                            </Col>
+                        ))}
+                    </Row>
+                </Container>
             </div>
         );
     }

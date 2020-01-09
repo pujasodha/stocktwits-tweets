@@ -1,38 +1,48 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Khula&display=swap');
+
+body {
+    font-family: 'Khula', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    color: white;
+    padding: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.jumbo {
+    font-style: bold;
+    background-image: url('./assests/stocks2.jpeg');
+    background-size: cover;
+    background-repeat: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-label {
+    width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.search-button {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tweet-cards {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.card-user {
+    display: flex;
+    /* margin-bottom: 1.5em; */
+}
+
+.user-image {
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
+.date {
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(62, 62, 62);
 }
