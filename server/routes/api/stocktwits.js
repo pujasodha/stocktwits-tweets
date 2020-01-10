@@ -17,6 +17,7 @@ router.get('/:symbol', function(req, res) {
         })
         .catch((error) => {
             console.log(error);
+            sendStatus(404);
         });
 });
 
