@@ -4,7 +4,7 @@ To start this app, run in your CLI:
 
 1. "yarn install"
 2. "cd yarn install"
-3. "npm run start"
+3. "npm run dev"
 
 The first two will install any packages needed, whereas the last command will the applicaton on "localhost:3000"
 
