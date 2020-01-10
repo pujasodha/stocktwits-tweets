@@ -1,3 +1,15 @@
+React based app that using Stocktwits API to display the latest messages of specified stock symbols
+
+To start this app, run in your CLI:
+
+1. "yarn install"
+2. "cd yarn install"
+3. "npm run start"
+
+The first two will install any packages needed, whereas the last command will the applicaton on "localhost:3000"
+
+// ========================================================================================================= //
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
