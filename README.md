@@ -15,7 +15,7 @@ To start this app:
 
 1. clone this repo
 2. "yarn install"
-3. "cd yarn install"
+3. "cd client && yarn install"
 4. "npm run dev"
 
-The first two will install any packages needed, whereas the last command will the applicaton on "localhost:3000"
+The second two will install any packages needed in either the root folder or the , whereas the last command will the applicaton on "localhost:3000"
