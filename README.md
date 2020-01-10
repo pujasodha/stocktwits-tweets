@@ -9,7 +9,9 @@ Enter in a stock symbol & display the latest messages from Stocktwis!
 -Stocktwits API
 -Bootstrap
 
-To start this app, run in your CLI:
+### Start App
+
+To start this app:
 
 1. clone this repo
 2. "yarn install"
