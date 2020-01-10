@@ -1,13 +1,15 @@
-**StockTwits Board**
+# StockTwits Board
+
 Enter in a stock symbol & display the latest messages from Stocktwis!
 
-**Technologies Used**
+## Technologies Used
+
 -ReactJS
 -Express
 -Stocktwits API
 -Bootstrap
 
-\*To start this app, run in your CLI:
+To start this app, run in your CLI:
 
 1. clone this repo
 2. "yarn install"
@@ -15,5 +17,3 @@ Enter in a stock symbol & display the latest messages from Stocktwis!
 4. "npm run dev"
 
 The first two will install any packages needed, whereas the last command will the applicaton on "localhost:3000"
-
-\*
