@@ -25,7 +25,7 @@ export default class App extends React.Component {
         this.timer();
         var intervalId = setInterval(() => {
             this.timer();
-        }, 10000);
+        }, 30000);
     }
 
     timer() {
@@ -33,17 +33,13 @@ export default class App extends React.Component {
         if (this.state.symbol) {
             const arrSymbol = this.state.symbol.split(',');
             for (var i = 0; i < arrSymbol.length; i++) {
+                var strSymbol = arrSymbol[i].split(' ').join('');
                 axios
-                    .get(`/stocktwits/${arrSymbol[i]}`)
+                    .get(`/stocktwits/${strSymbol}`)
                     .then((response) => {
-                        const data = response.data;
-                        if (arrMessageData.length === 0) {
-                            arrMessageData = data;
-                        } else {
-                            for (var i = 0; i < data.length; i++) {
-                                arrMessageData.push(data[i]);
-                            }
-                        }
+                        arrMessageData.push(response.data);
+
+                        console.log(arrMessageData);
                         this.setState({ message: arrMessageData });
                         console.log(this.state.message);
                     })
@@ -55,6 +51,10 @@ export default class App extends React.Component {
     componentDidMount = (symbol) => {};
 
     render() {
+        function handleRemoveClick(e) {
+            e.preventDefault();
+            var elem = (document.getElementById(e.target.value).style.display = 'none');
+        }
         return (
             <div>
                 <Jumbotron fluid className="jumbo bg-dark">
