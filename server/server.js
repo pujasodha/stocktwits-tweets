@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -19,6 +20,14 @@ app.post('/api/hello', (req, res) => {
     console.log(req.body);
     res.send(`Recieved POST Request: ${req.body.post}`);
 });
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'client/public'))); // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+    });
+}
 
 app.use('/stocktwits', stocktwitsRouter);
 
