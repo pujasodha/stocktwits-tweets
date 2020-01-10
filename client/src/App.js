@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
+import Moment from 'react-moment';
 import './App.css';
-import { Jumbotron, Container, Col, Row, Form, Card, Button } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Row, Form, Toast, Table, Card, Button } from 'react-bootstrap';
 const axios = require('axios');
 
 export default class App extends React.Component {
@@ -41,7 +42,6 @@ export default class App extends React.Component {
 
                         console.log(arrMessageData);
                         this.setState({ message: arrMessageData });
-                        console.log(this.state.message);
                     })
                     .catch((err) => console.log(err));
             }
@@ -56,7 +56,7 @@ export default class App extends React.Component {
             var elem = (document.getElementById(e.target.value).style.display = 'none');
         }
         return (
-            <div>
+            <Fragment>
                 <Jumbotron fluid className="jumbo bg-dark">
                     <Container className="header text-center">
                         <h1>Stocktwits Board</h1> <br />
@@ -64,7 +64,6 @@ export default class App extends React.Component {
                         <h4>Just enter in the symbol below, and we'll do the rest</h4>
                     </Container>
                 </Jumbotron>
-
                 {/* Search */}
                 <Container>
                     <Form className="form">
@@ -75,7 +74,7 @@ export default class App extends React.Component {
                                         type="text"
                                         value={this.state.symbol}
                                         onChange={this.handleChange}
-                                        placeholder="Ex. AAPL"
+                                        placeholder="Enter Symbol(s) Ex. AAPL, BAC"
                                         className="search-box"
                                     />
                                 </Form.Label>
@@ -97,34 +96,64 @@ export default class App extends React.Component {
                     </Form>
                 </Container>
                 {/* Results */}
-
-                <Container>
-                    <Row>
-                        {this.state.message.map(({ user, created_at, body }) => (
-                            <Col xs={12} md={4}>
-                                <Card className="tweet-cards" bg="light">
-                                    <Card.Header className="card-user">
-                                        <img
-                                            src={user.avatar_url}
-                                            className="user-image"
-                                            alt="users-avatar"
-                                        ></img>
-                                        <p>{user.username}</p>
-                                        <hr />
-                                    </Card.Header>
-                                    <Card.Text className="card-body">
-                                        <p>{body}</p>
-                                    </Card.Text>
-                                    {/* <Card.Footer>
-                                        <p>{created_at}</p>
-                                    </Card.Footer> */}
-                                </Card>
-                                <br />
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
-            </div>
+                {this.state.message.map(function(arrData) {
+                    var mainKey;
+                    Object.keys(arrData).forEach(function(key) {
+                        mainKey = key;
+                    });
+                    return (
+                        <Container>
+                            <Table bordered hover id={mainKey} className="result-container">
+                                <Row justify-content-md-center>
+                                    <Col xs={12} md={12}>
+                                        <thead>
+                                            <tr>
+                                                <th className="symbol">${mainKey}</th>
+                                                <th width="5%">
+                                                    <Button
+                                                        type="button"
+                                                        value={mainKey}
+                                                        onClick={handleRemoveClick}
+                                                    >
+                                                        x
+                                                    </Button>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </Col>
+                                </Row>
+                                <Row justify-content-md-center>
+                                    <Col xs={12}>
+                                        {arrData[mainKey].map((mainData, length) => (
+                                            <Card className="tweet-cards" bg="light">
+                                                <Card.Header className="card-user">
+                                                    <img
+                                                        src={mainData.user.avatar_url}
+                                                        className="user-image"
+                                                        alt="users-avatar"
+                                                    ></img>
+                                                    <div className="username">
+                                                        {mainData.user.username}
+                                                    </div>
+                                                    <div className="count">{length}</div>
+                                                </Card.Header>
+                                                <Card.Text className="card-body">
+                                                    {mainData.body}
+                                                </Card.Text>
+                                                <Card.Footer>
+                                                    <div className="date">
+                                                        <Moment>{mainData.created_at}</Moment>
+                                                    </div>
+                                                </Card.Footer>
+                                            </Card>
+                                        ))}
+                                    </Col>
+                                </Row>
+                            </Table>
+                        </Container>
+                    );
+                })}
+            </Fragment>
         );
     }
 }

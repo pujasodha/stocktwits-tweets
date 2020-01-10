@@ -25,15 +25,43 @@ body {
     margin-bottom: 20px;
 }
 
+.card {
+    margin: 15px 0;
+    border: solid 1px green;
+}
+
+.username {
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
 .tweet-cards {
     display: flex;
     justify-content: center;
-    padding: 15px;
 }
 
+.table {
+    max-width: none;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.count {
+    float: right;
+    margin-left: auto;
+}
+.results-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.symbol {
+    font-size: 1.5em;
+    color: #1d4728;
+    text-align: center;
+}
 .card-user {
     display: flex;
-    /* margin-bottom: 1.5em; */
 }
 
 .user-image {
