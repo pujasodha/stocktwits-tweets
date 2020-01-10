@@ -8,7 +8,7 @@ To start this app, run in your CLI:
 
 The first two will install any packages needed, whereas the last command will the applicaton on "localhost:3000"
 
-// ========================================================================================================= //
+// ================================================= //
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
