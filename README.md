@@ -9,7 +9,7 @@ Enter in a stock symbol & display the latest messages from Stocktwis!
 -Stocktwits API
 -Bootstrap
 
-### Start App
+---
 
 To start this app:
 
