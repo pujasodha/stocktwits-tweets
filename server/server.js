@@ -21,10 +21,10 @@ app.post('/api/hello', (req, res) => {
     res.send(`Recieved POST Request: ${req.body.post}`);
 });
 
+app.use('/stocktwits', stocktwitsRouter);
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
-
-app.use('/stocktwits', stocktwitsRouter);
 
 app.listen(PORT, () => console.log(`Listening: http://localhost:${PORT}`));
