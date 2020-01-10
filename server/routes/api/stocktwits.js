@@ -12,6 +12,7 @@ router.get('/:symbol', function(req, res) {
         .get(apiUrl)
         .then((response) => {
             data[symbol] = response.data.messages;
+            console.log(data[symbol]);
             res.json(data);
         })
         .catch((error) => {
