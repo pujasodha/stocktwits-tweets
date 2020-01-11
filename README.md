@@ -4,10 +4,7 @@ Enter in a stock symbol & display the latest messages from Stocktwis!
 
 ## Technologies Used
 
--ReactJS
--Express
--Stocktwits API
--Bootstrap
+ReactJS, Express, Bootstrap, Stocktwits API
 
 ---
 
